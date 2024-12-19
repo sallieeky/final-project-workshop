@@ -5,7 +5,9 @@ namespace App\Domains\Products\Data;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Spatie\LaravelData\Data;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
+#[TypeScript]
 class ProductData extends Data
 {
     public function __construct(

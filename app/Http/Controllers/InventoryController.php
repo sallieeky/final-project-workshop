@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Domains\Inventories\Data\InventoryData;
+use App\Domains\Inventories\Services\InventoryService;
 use App\Http\Requests\InventoryRequest;
 use App\Models\Inventory;
 
 class InventoryController extends Controller
 {
-    public function get()
+    public function __construct(
+        private readonly InventoryService $inventoryService
+    ){}
+
+    public function index(): InventoryData
     {
-        return Inventory::all();
+        return $this->inventoryService->get();
     }
 
-    public function store(InventoryRequest $request)
+    public function store(InventoryRequest $request): Inventory
     {
-        return Inventory::create($request->validated());
+        return $this->inventoryService->store(InventoryData::fromRequest($request));
     }
 }

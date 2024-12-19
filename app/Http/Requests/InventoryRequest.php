@@ -11,6 +11,7 @@ class InventoryRequest extends FormRequest
         return [
             'warehouse_id' => ['required', 'exists:warehouses'],
             'product_id' => ['required', 'exists:products'],
+            'stock' => ['required', 'integer'],
         ];
     }
 

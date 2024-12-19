@@ -15,7 +15,6 @@ class WarehouseController extends Controller
 
     public function store(WarehouseCreateRequest $request): Warehouse
     {
-        $data = WarehouseData::fromRequest($request);
-        return $this->warehouseService->store($data);
+        return $this->warehouseService->store(WarehouseData::fromRequest($request));
     }
 }

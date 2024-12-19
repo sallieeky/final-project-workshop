@@ -13,7 +13,7 @@ class ProductController extends Controller
         private readonly ProductService $productService
     ){}
 
-    public function get()
+    public function index()
     {
         return $this->productService->get();
     }
