@@ -2,37 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Domains\Products\Data\ProductData;
+use App\Domains\Products\Services\ProductService;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
+    public function __construct(
+        private readonly ProductService $productService
+    ){}
+
+
     public function index()
     {
-        return Product::all();
+        return $this->productService->index();
     }
 
     public function store(ProductRequest $request)
     {
-        return Product::create($request->validated());
-    }
-
-    public function show(Product $product)
-    {
-        return $product;
-    }
-
-    public function update(ProductRequest $request, Product $product)
-    {
-        $product->update($request->validated());
-
-        return $product;
-    }
-
-    public function destroy(Product $product)
-    {
-        $product->delete();
-
-        return response()->json();
+        return $this->productService->store(ProductData::fromRequest($request));
     }
 }
