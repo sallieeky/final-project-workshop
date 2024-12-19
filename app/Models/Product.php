@@ -16,6 +16,11 @@ class Product extends Model
         'price',
     ];
 
+    public function extendedTotalStockAttribute(): int
+    {
+        return $this->inventories->sum('stock');
+    }
+
     public function inventories(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Inventory::class);

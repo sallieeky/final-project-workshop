@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->integer('stock');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['warehouse_id', 'product_id']);
         });
     }
 
