@@ -11,9 +11,9 @@ final readonly class ProductService
         private Product $product
     ){}
 
-    public function get(): ProductData
+    public function get()
     {
-        return ProductData::from($this->product->get());
+        return ProductData::collect($this->product->get());
     }
 
     public function store(ProductData $data): Product

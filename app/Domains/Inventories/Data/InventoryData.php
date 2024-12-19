@@ -24,5 +24,4 @@ class InventoryData extends Data
             stock: $request->stock,
         );
     }
-
 }

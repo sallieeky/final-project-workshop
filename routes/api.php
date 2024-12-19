@@ -7,6 +7,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::resource('products', \App\Http\Controllers\ProductController::class);
-Route::resource('warehouses', \App\Http\Controllers\WarehouseController::class);
-Route::resource('inventories', \App\Http\Controllers\InventoryController::class);
+Route::resource('v1/products', \App\Http\Controllers\ProductController::class);
+Route::resource('v1/warehouses', \App\Http\Controllers\WarehouseController::class);
+Route::resource('v1/inventories', \App\Http\Controllers\InventoryController::class);

@@ -11,9 +11,9 @@ final readonly class InventoryService
         private Inventory $inventory
     ){}
 
-    public function get(): InventoryData
+    public function get()
     {
-        return InventoryData::from($this->inventory->get());
+        return InventoryData::collect($this->inventory->get());
     }
 
     public function store(InventoryData $data): Inventory

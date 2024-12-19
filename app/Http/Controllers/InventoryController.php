@@ -13,7 +13,7 @@ class InventoryController extends Controller
         private readonly InventoryService $inventoryService
     ){}
 
-    public function index(): InventoryData
+    public function index()
     {
         return $this->inventoryService->get();
     }

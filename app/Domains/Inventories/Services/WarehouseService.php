@@ -11,6 +11,11 @@ final readonly class WarehouseService
         private Warehouse $warehouse
     ){}
 
+    public function get()
+    {
+        return WarehouseData::collect($this->warehouse->get());
+    }
+
     public function store(WarehouseData $data): Warehouse
     {
         return $this->warehouse->create([

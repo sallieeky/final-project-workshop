@@ -24,5 +24,4 @@ class ProductData extends Data
             price: $request->price,
         );
     }
-
 }

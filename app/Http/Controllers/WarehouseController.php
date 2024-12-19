@@ -13,6 +13,11 @@ class WarehouseController extends Controller
         private readonly WarehouseService $warehouseService,
     ){}
 
+    public function index()
+    {
+        return $this->warehouseService->get();
+    }
+
     public function store(WarehouseCreateRequest $request): Warehouse
     {
         return $this->warehouseService->store(WarehouseData::fromRequest($request));
