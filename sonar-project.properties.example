@@ -1,0 +1,4 @@
+sonar.projectKey=final-project-eky-ikhsan
+
+sonar.sources=app
+sonar.php.coverage.reportPaths=coverage.xml
