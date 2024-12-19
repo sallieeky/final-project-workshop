@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Clone Repository
-        run: cd /var/www && rm -rf html && git clone https://github.com/sallieeky/ddd-final-project.git html && cd html && ls
+        run: cd /var/www && rm -rf html && git clone https://github.com/sallieeky/final-project-workshop.git html && cd html && ls
 
       - name: Verify Clone
         run: |
