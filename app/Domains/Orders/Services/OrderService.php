@@ -28,11 +28,11 @@ final readonly class OrderService
             $data = OrderData::from($order);
             OrderCreatedEvent::dispatch($data);
             \DB::commit();
+
+            return $order;
         } catch (\Exception $e) {
             \DB::rollBack();
-            report($e);
+            throw $e;
         }
-
-        return $order;
     }
 }

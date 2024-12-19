@@ -30,11 +30,12 @@ final readonly class InventoryService
     {
         $inventoryStock = $this->inventory->where('product_id', $orderData->product_id);
 
-        if ($inventoryStock->count() < $orderData->quantity) {
-            throw new \UnexpectedValueException('Insufficient stock', 400);
+        if ($inventoryStock->sum('stock') < $orderData->quantity) {
+            throw new \UnexpectedValueException('Insufficient stock! Exist only:' . $inventoryStock->sum('stock') . ' but required:' . $orderData->quantity, 400);
         }
 
         $inventories = $inventoryStock->get();
+        $quantity = $orderData->quantity;
         foreach ($inventories as $inventory) {
             $this->partialUpdate($inventory, $quantity);
         }

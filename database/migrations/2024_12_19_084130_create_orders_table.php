@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products');
-            $table->bigInteger('stock');
+            $table->bigInteger('quantity');
             $table->timestamps();
             $table->softDeletes();
         });

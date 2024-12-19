@@ -12,7 +12,7 @@ class Order extends Model
 
     protected $fillable = [
         'product_id',
-        'stock',
+        'quantity',
     ];
 
     public function product(): BelongsTo
