@@ -16,7 +16,11 @@ class Product extends Model
         'price',
     ];
 
-    public function extendedTotalStockAttribute(): int
+    protected $appends = [
+        'extended_total_stock',
+    ];
+
+    public function getExtendedTotalStockAttribute(): int
     {
         return $this->inventories->sum('stock');
     }
