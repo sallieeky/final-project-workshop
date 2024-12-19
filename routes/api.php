@@ -10,3 +10,4 @@ Route::get('/user', function (Request $request) {
 Route::resource('v1/products', \App\Http\Controllers\ProductController::class);
 Route::resource('v1/warehouses', \App\Http\Controllers\WarehouseController::class);
 Route::resource('v1/inventories', \App\Http\Controllers\InventoryController::class);
+Route::resource('v1/orders', \App\Http\Controllers\OrderController::class);

@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Domains\Inventories\Data\InventoryData;
 use App\Domains\Inventories\Services\InventoryService;
-use App\Domains\Products\Services\ProductService;
+use App\Domains\Products\Services\OrderService;
 use Illuminate\Console\Command;
 
 class InventoryCommand extends Command

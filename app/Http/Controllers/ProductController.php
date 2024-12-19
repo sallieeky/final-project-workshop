@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Domains\Products\Data\ProductData;
-use App\Domains\Products\Services\ProductService;
+use App\Domains\Products\Data\OrderData;
+use App\Domains\Products\Services\OrderService;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
     public function __construct(
-        private readonly ProductService $productService
+        private readonly OrderService $productService
     ){}
 
     public function index()
@@ -20,6 +20,6 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        return $this->productService->store(ProductData::fromRequest($request));
+        return $this->productService->store(OrderData::fromRequest($request));
     }
 }

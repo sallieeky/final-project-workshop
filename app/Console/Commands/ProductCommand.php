@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Domains\Products\Data\OrderData;
 use App\Domains\Products\Data\ProductData;
+use App\Domains\Products\Services\OrderService;
 use App\Domains\Products\Services\ProductService;
 use Illuminate\Console\Command;
 
