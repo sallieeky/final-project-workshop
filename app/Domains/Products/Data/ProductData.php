@@ -2,8 +2,7 @@
 
 namespace App\Domains\Products\Data;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -16,7 +15,7 @@ class ProductData extends Data
         public float $price,
     ) {}
 
-    public static function fromRequest(Request $request): self
+    public static function fromRequest(ProductRequest $request): self
     {
         return new self(
             name: $request->name,
