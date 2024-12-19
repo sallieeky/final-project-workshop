@@ -4,16 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Warehouse extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
-        'description',
-        'price',
     ];
 
     public function inventories(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -21,8 +20,8 @@ class Product extends Model
         return $this->hasMany(Inventory::class);
     }
 
-    public function warehouses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Warehouse::class, 'inventories');
+        return $this->belongsToMany(Product::class, 'inventories');
     }
 }

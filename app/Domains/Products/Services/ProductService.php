@@ -5,18 +5,18 @@ namespace App\Domains\Products\Services;
 use App\Domains\Products\Data\ProductData;
 use App\Models\Product;
 
-class ProductService
+final readonly class ProductService
 {
     public function __construct(
-        private readonly Product $product
+        private Product $product
     ){}
 
-    public function index()
+    public function index(): ProductData
     {
-        return $this->product->all();
+        return ProductData::from($this->product->get());
     }
 
-    public function store(ProductData $data)
+    public function store(ProductData $data): Product
     {
         return $this->product->create([
             'name' => $data->name,
