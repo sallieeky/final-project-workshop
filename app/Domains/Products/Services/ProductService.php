@@ -11,7 +11,7 @@ final readonly class ProductService
         private Product $product
     ){}
 
-    public function index(): ProductData
+    public function get(): ProductData
     {
         return ProductData::from($this->product->get());
     }

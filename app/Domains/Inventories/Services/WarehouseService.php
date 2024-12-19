@@ -11,7 +11,7 @@ final readonly class WarehouseService
         private Warehouse $warehouse
     ){}
 
-    public function create(WarehouseData $data): Warehouse
+    public function store(WarehouseData $data): Warehouse
     {
         return $this->warehouse->create([
             'name' => $data->name,

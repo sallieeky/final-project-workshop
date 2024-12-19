@@ -7,7 +7,7 @@ use App\Models\Inventory;
 
 class InventoryController extends Controller
 {
-    public function index()
+    public function get()
     {
         return Inventory::all();
     }
@@ -15,24 +15,5 @@ class InventoryController extends Controller
     public function store(InventoryRequest $request)
     {
         return Inventory::create($request->validated());
-    }
-
-    public function show(Inventory $inventory)
-    {
-        return $inventory;
-    }
-
-    public function update(InventoryRequest $request, Inventory $inventory)
-    {
-        $inventory->update($request->validated());
-
-        return $inventory;
-    }
-
-    public function destroy(Inventory $inventory)
-    {
-        $inventory->delete();
-
-        return response()->json();
     }
 }

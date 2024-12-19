@@ -13,9 +13,9 @@ class ProductController extends Controller
         private readonly ProductService $productService
     ){}
 
-    public function index()
+    public function get()
     {
-        return $this->productService->index();
+        return $this->productService->get();
     }
 
     public function store(ProductRequest $request)
