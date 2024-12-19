@@ -9,8 +9,8 @@ class InventoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'warehouse_id' => ['required', 'exists:warehouses'],
-            'product_id' => ['required', 'exists:products'],
+            'warehouse_id' => ['required'],
+            'product_id' => ['required'],
             'stock' => ['required', 'integer'],
         ];
     }
