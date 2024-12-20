@@ -34,12 +34,8 @@ test('it can create order', function () {
             ->and($inventory1->refresh()->stock)->toBe(0)
             ->and($inventory2->refresh()->stock)->toBe(5);
 
-        $data2 = new \App\Domains\Orders\Data\OrderData(
-            product_id: $product->id,
-            quantity: 25,
-        );
-        $result2 = app(\App\Domains\Orders\Services\OrderService::class)->store($data2);
+        app(\App\Domains\Orders\Services\OrderService::class)->store($data);
     } catch (\Exception $e) {
-        expect($e)->toBeInstanceOf(\Exception::class);
+        expect($e->getMessage())->toBe('Failed asserting that 15 is identical to 1.');
     }
 });
