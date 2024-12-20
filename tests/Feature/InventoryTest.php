@@ -44,23 +44,28 @@ test('it can create inventory', function () {
 
 test('it can update stock', function () {
     $product = \App\Models\Product::factory()->create();
-    $warehouse = \App\Models\Warehouse::factory()->create();
-    $inventory = \App\Models\Inventory::factory()->create([
+    $inventory1 = \App\Models\Inventory::factory()->create([
         'product_id' => $product->id,
-        'warehouse_id' => $warehouse->id,
+        'warehouse_id' => \App\Models\Warehouse::factory()->create()->id,
+        'stock' => 10,
+    ]);
+    $inventory2 = \App\Models\Inventory::factory()->create([
+        'product_id' => $product->id,
+        'warehouse_id' => \App\Models\Warehouse::factory()->create()->id,
         'stock' => 10,
     ]);
 
     $orderData = new \App\Domains\Orders\Data\OrderData(
         product_id: $product->id,
-        quantity: 5,
+        quantity: 12,
     );
-
     app(\App\Domains\Inventories\Services\InventoryService::class)->updatingStock($orderData);
 
-    $inventory->refresh();
+    $inventory1->refresh();
+    $inventory2->refresh();
 
-    expect($inventory->stock)->toBe(5);
+    expect($inventory1->stock)->toBe(0)
+        ->and($inventory2->stock)->toBe(8);
 });
 
 test('it can update stock with insufficient stock', function () {
