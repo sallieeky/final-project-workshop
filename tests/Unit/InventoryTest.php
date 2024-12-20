@@ -17,15 +17,31 @@ test('it can create inventory from request', function () {
     $mockWarehouse = Mockery::mock('App\Models\Warehouse');
     $mockWarehouse->shouldReceive('getAttribute')->with('id')->andReturn(1);
 
+    $mock = Mockery::mock('App\Models\Inventory');
+    $mock->shouldReceive('getAttribute')->with('product_id')->andReturn($mockProduct->id);
+    $mock->shouldReceive('getAttribute')->with('warehouse_id')->andReturn($mockWarehouse->id);
+    $mock->shouldReceive('getAttribute')->with('stock')->andReturn(10);
+
     $request = new \App\Http\Requests\InventoryRequest([
         'product_id' => $mockProduct->id,
         'warehouse_id' => $mockWarehouse->id,
-        'stock' => 10,
+        'stock' => $mock->stock,
     ]);
-
     $data = \App\Domains\Inventories\Data\InventoryData::fromRequest($request);
 
-    expect($data->product_id)->toBe($mockProduct->id)
-        ->and($data->warehouse_id)->toBe($mockWarehouse->id)
-        ->and($data->stock)->toBe(10);
+    $mock->shouldReceive('create')
+        ->once()
+        ->with([
+            'product_id' => $mockProduct->id,
+            'warehouse_id' => $mockWarehouse->id,
+            'stock' => $mock->stock,
+        ])
+        ->andReturn($mock);
+
+    $service = new \App\Domains\Inventories\Services\InventoryService($mock);
+    $result = $service->store($data);
+
+    expect($result->product_id)->toBe($mockProduct->id)
+        ->and($result->warehouse_id)->toBe($mockWarehouse->id)
+        ->and($result->stock)->toBe($mock->stock);
 });
