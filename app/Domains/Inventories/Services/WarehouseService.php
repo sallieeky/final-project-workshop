@@ -9,7 +9,8 @@ final readonly class WarehouseService
 {
     public function __construct(
         private Warehouse $warehouse
-    ){}
+    )
+    {}
 
     public function get()
     {

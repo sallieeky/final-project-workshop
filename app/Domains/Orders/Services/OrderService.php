@@ -10,7 +10,8 @@ final readonly class OrderService
 {
     public function __construct(
         private Order $order
-    ){}
+    )
+    {}
 
     public function get()
     {

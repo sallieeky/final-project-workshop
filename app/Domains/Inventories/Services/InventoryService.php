@@ -10,7 +10,8 @@ final readonly class InventoryService
 {
     public function __construct(
         private Inventory $inventory
-    ){}
+    )
+    {}
 
     public function get()
     {
@@ -28,13 +29,16 @@ final readonly class InventoryService
 
     public function updatingStock(OrderData $orderData): void
     {
-        $inventoryStock = $this->inventory->where('product_id', $orderData->product_id);
-
-        if ($inventoryStock->sum('stock') < $orderData->quantity) {
-            throw new \UnexpectedValueException('Insufficient stock! Exist only:' . $inventoryStock->sum('stock') . ' but required:' . $orderData->quantity, 400);
+        $inventory = $this->inventory->where('product_id', $orderData->product_id);
+        $inventoryStock = $inventory->sum('stock');
+        if ($inventoryStock < $orderData->quantity) {
+            throw new \UnexpectedValueException(
+                'Insufficient stock! Exist only:' . $inventoryStock . ' but required:' . $orderData->quantity,
+                400
+            );
         }
 
-        $inventories = $inventoryStock->get();
+        $inventories = $inventory->get();
         $quantity = $orderData->quantity;
         foreach ($inventories as $inventory) {
             $this->partialUpdate($inventory, $quantity);

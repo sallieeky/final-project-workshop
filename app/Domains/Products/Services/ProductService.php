@@ -9,7 +9,8 @@ final readonly class ProductService
 {
     public function __construct(
         private Product $product
-    ){}
+    )
+    {}
 
     public function get()
     {
