@@ -2,8 +2,7 @@
 
 namespace App\Domains\Inventories\Data;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\InventoryRequest;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -16,7 +15,7 @@ class InventoryData extends Data
         public int $stock,
     ) {}
 
-    public static function fromRequest(Request $request): self
+    public static function fromRequest(InventoryRequest $request): self
     {
         return new self(
             product_id: $request->product_id,
